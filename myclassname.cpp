@@ -160,13 +160,15 @@ void myclassname()
     {
         if (b->classname() == "Flat")
         {
-            ((Flat*)b)->setFloors(i);
-            b->printInfo();
+            Flat *f = static_cast<Flat*>(b);
+            f->setFloors(i);
+            f->printInfo();
         }
         else if (b->classname() == "House")
         {
-            ((House*)b)->setNumbersRooms(i);
-            b->printInfo();
+            House *h = dynamic_cast<House*>(b);
+            h->setNumbersRooms(i);
+            h->printInfo();
         }
         i++;
     }
@@ -176,5 +178,11 @@ void myclassname()
     if (buildings[0]->classname() == "ResidentialBuilding")
     {
         ((ResidentialBuilding*)buildings[0])->setCity(true);
+    }
+    ResidentialBuilding *hh = dynamic_cast<ResidentialBuilding*>(buildings[0]);
+    if (hh)
+    {
+        printf("-----------------\n");
+        hh->printInfo();
     }
 }
