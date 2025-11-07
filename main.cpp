@@ -2,6 +2,7 @@
 #include <QDebug>
 #include "virtualview.h"
 #include "global.h"
+#include "myclassname.h"
 extern int INDEX;
 class Building
 {
@@ -118,5 +119,5 @@ protected:
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
-    virtualView();
+    myclassname();
 }

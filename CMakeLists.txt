@@ -17,6 +17,7 @@ add_executable(laba5
 
   global.h global.cpp
   virtualview.h virtualview.cpp
+  myclassname.h myclassname.cpp
 
 
 )

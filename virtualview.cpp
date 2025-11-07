@@ -7,7 +7,7 @@ public:
     Building()
     {
         _INDEX = INDEX++;
-        printf("\nBuilding create #1[%d]\n", _INDEX);
+        printf("Building create #1[%d]\n", _INDEX);
     }
     Building(Building &iBuilding)
     {
@@ -15,7 +15,7 @@ public:
         lenght = iBuilding.lenght;
         width = iBuilding.width;
         height = iBuilding.height;
-        printf("\nBuilding create #2[%d]\n", _INDEX);
+        printf("Building create #2[%d]\n", _INDEX);
     }
 public:
     virtual void v2_1()
@@ -24,7 +24,7 @@ public:
     }
     void v2_2()
     {
-        qDebug() << "Building v2_2";
+        printf("Building v2_2\n");
     }
     virtual void v3_1()
     {
@@ -32,11 +32,15 @@ public:
     }
     virtual void v3_2()
     {
-        qDebug() << "Building v3_2";
+        printf("Building v3_2\n");
     }
     void v4()
     {
-        qDebug() << "Building v4";
+        printf("Building v4\n");
+    }
+    virtual void v5()
+    {
+        printf("Building v5\n");
     }
     void setLenght(float iLenght)
     {
@@ -52,11 +56,11 @@ public:
     }
     void printInfo()
     {
-        printf("\nЗдание размером: %.2fx%.2fx%.2f\n", lenght, width, height);
+        printf("Здание размером: %.2fx%.2fx%.2f\n", lenght, width, height);
     }
     virtual ~Building()
     {
-        printf("\nBuilding delete #1 [%d]\n", _INDEX);
+        printf("Building delete #1 [%d]\n", _INDEX);
     }
 protected:
     float lenght = 0;
@@ -70,33 +74,37 @@ class ResidentialBuilding: public Building
 public:
     ResidentialBuilding()
     {
-        printf("\nResidentialBuilding create #1 [%d]\n", _INDEX);
+        printf("ResidentialBuilding create #1 [%d]\n", _INDEX);
     }
     ResidentialBuilding(ResidentialBuilding &iResidentialBuilding) : Building(iResidentialBuilding)
     {
         isCity = iResidentialBuilding.isCity;
-        printf("\nResidentialBuilding create #2 [%d]\n", _INDEX);
+        printf("ResidentialBuilding create #2 [%d]\n", _INDEX);
     }
     ~ResidentialBuilding() override
     {
-        printf("\nResidentialBuilding delete #1 [%d]\n", _INDEX);
+        printf("ResidentialBuilding delete #1 [%d]\n", _INDEX);
     }
 public:
     void v2_2()
     {
-        qDebug() << "ResidentialBuilding v2_2";
+        printf("ResidentialBuilding v2_2\n");
     }
     void v3_2() override
     {
-        qDebug() << "ResidentialBuilding v3_2";
+        printf("ResidentialBuilding v3_2\n");
     }
     void v4()
     {
-        qDebug() << "ResidentialBuilding v4";
+        printf("ResidentialBuilding v4\n");
+    }
+    void v5() override
+    {
+        printf("ResidentialBuilding v5\n");
     }
     void printInfo()
     {
-        printf("\nЖилое здание размером: %.2fx%.2fx%.2f. Находится в городе: %s\n", lenght, width, height, isCity ? "Да" : "Нет");
+        printf("Жилое здание размером: %.2fx%.2fx%.2f. Находится в городе: %s\n", lenght, width, height, isCity ? "Да" : "Нет");
     }
 protected:
     bool isCity = true;
@@ -104,8 +112,17 @@ protected:
 
 void virtualView()
 {
-    ResidentialBuilding *rb = new ResidentialBuilding();
+    Building *rb = new ResidentialBuilding();
     rb->v2_1();
     rb->v3_1();
-
+    delete rb;
+    printf("---------------\n");
+    Building *r1 = new ResidentialBuilding();
+    ResidentialBuilding *r2 = new ResidentialBuilding();
+    r1->v4();
+    r2->v4();
+    r1->v5();
+    r2->v5();
+    delete r1;
+    delete r2;
 }
