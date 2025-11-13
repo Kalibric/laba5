@@ -18,6 +18,10 @@ add_executable(laba5
   global.h global.cpp
   virtualview.h virtualview.cpp
   myclassname.h myclassname.cpp
+  myisa.h myisa.cpp
+  func.h func.cpp
+  func2.h func2.cpp
+  myunique.h myunique.cpp
 
 
 )

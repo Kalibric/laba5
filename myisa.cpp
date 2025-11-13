@@ -1,4 +1,4 @@
-#include "myclassname.h"
+#include "myisa.h"
 #include <QCoreApplication>
 #include <random>
 extern int INDEX;
@@ -159,7 +159,8 @@ protected:
     int apartments = 1;
 };
 
-void myclassname()
+
+void myisa()
 {
     srand(time(0));
     vector<Building*> buildings;
@@ -172,33 +173,19 @@ void myclassname()
             buildings.push_back(new House());
     }
     i = 0;
-    for (Building *b : buildings)
+    for (Building* b : buildings)
     {
-        if (b->classname() == "Flat")
+        if (b->isA("Flat"))
         {
-            Flat *f = static_cast<Flat*>(b);
+            Flat *f = dynamic_cast<Flat*>(b);
             f->setFloors(i);
         }
-        else if (b->classname() == "House")
+        else if (b->isA("House"))
         {
             House *h = dynamic_cast<House*>(b);
             h->setNumbersRooms(i);
         }
         b->printInfo();
         i++;
-    }
-
-    // Проблема:
-
-    if (buildings[0]->classname() == "ResidentialBuilding")
-    {
-        ((ResidentialBuilding*)buildings[0])->setCity(true);
-    }
-
-    ResidentialBuilding *hh = dynamic_cast<ResidentialBuilding*>(buildings[0]);
-    if (hh)
-    {
-        printf("-----------------\n");
-        hh->printInfo();
     }
 }
